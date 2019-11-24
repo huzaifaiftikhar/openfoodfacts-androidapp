@@ -15,8 +15,8 @@ env:
     # PATH order is incredibly important. e.g. the 'emulator' script exists in more than one place!
     - ANDROID_HOME=/usr/local/android-sdk
     - TOOLS=${ANDROID_HOME}/tools
-    - PATH=${ANDROID_HOME}:${ANDROID_HOME}/emulator:${TOOLS}:${TOOLS}/bin:${ANDROID_HOME}/platform-tools:${PATH}
-    - ADB_INSTALL_TIMEOUT=20 # minutes (2 minutes by default)
+    #- PATH=${ANDROID_HOME}:${ANDROID_HOME}/emulator:${TOOLS}:${TOOLS}/bin:${ANDROID_HOME}/platform-tools:${PATH}
+    #- ADB_INSTALL_TIMEOUT=20 # minutes (2 minutes by default)
     - secure: "fpNJresszWHcOg8Qh4plu2RJFOv9AzCMh2dVV2SbwWNRuf2j15raDdFGhCD2tEM7ddhqrfHgmiwqFSWCzjWw1azx0ovGJfFhikLM741pLb68S/EkOdvl9RU6DXeC6+Tyg0iaustgkoK24kwkzx/kg3o56TyFg1g2ufsQqfEseJtOGVQEh86zj8ncfU60VcMP7HHqHZMjlZaQ+G0Ale4ofzQzmAbiNiNPjykMbjDhzdKMTeZLXnj8S59twI1y/D/JdfKCiq/xOnO3HbIZBZ4A3nVb/fV5WCR4Kw6LRzoNE9qYnxJFaeIYSF9+YDDol9PbQRWTX5EgDnJBbZqj8aSYUEk3WUGRnDCKYR0R/v/BhTfnLIp1jBQWyhDJ56iPZ+tgRfChMejsf8aH8agPwczjfbX8H/1NLzBAtF/elA67dPaoQMqb33nO8D+ESIIyYNsK4CyfeDF6/qT/IcBBa7FUfhIOHjwLnaeCyZS78eq2QUSNkDaATKM8BUot+hGMTenBpivEDKL1L+twFFFKjNK3HkvnJ2H92P/EgT7OUVSuPnD5czfK3WydMmbimChKoygSq5/62tC6FMHUNdNj7pHnfJWTdSj+RgNJKVTasPJAQ1B+pU/z+TZVJMsBpME2CTtNGC6+o9W/6K5FMUt/2J/P63RHJqXXZLtttphN3tg7eLo="
 android:
   components:
@@ -51,11 +51,11 @@ before_script:
   - echo y | sdkmanager "platforms;android-$ANDROID_API" >/dev/null # We need the API of the current compileSdkVersion from gradle.properties
   - echo y | sdkmanager --channel=4 "emulator" >/dev/null # Use canary channel to get emulator 29.x for x86_64 image support
   - echo y | sdkmanager "extras;android;m2repository" >/dev/null
-  - echo y | sdkmanager "system-images;android-$API;$EMU_FLAVOR;$ABI" >/dev/null # install our emulator
-  - echo no | avdmanager create avd --force -n test -k "system-images;android-$API;$EMU_FLAVOR;$ABI" -c 10M
-  - emulator -verbose -avd test -no-accel -no-snapshot -no-window $AUDIO -selinux permissive -qemu -m 2048 &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
+  #- echo y | sdkmanager "system-images;android-$API;$EMU_FLAVOR;$ABI" >/dev/null # install our emulator
+  #- echo no | avdmanager create avd --force -n test -k "system-images;android-$API;$EMU_FLAVOR;$ABI" -c 10M
+  #- emulator -verbose -avd test -no-accel -no-snapshot -no-window $AUDIO -selinux permissive -qemu -m 2048 &
+  #- android-wait-for-emulator
+  #- adb shell input keyevent 82 &
 
 jobs:
  include:
